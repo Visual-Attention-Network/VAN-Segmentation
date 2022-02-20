@@ -9,10 +9,10 @@ More detailes can be found in
 #### VAN + UperNet
 |    Backbone     | Iters | mIoU | Config | Download  |
 | :-------------: | :-----: | :------: | :------------: | :----: |
-|    VAN-Tiny     | 160K | 41.1 |  [config]()  |  |
-|    VAN-Small    | 160K |  44.9  |  [config]()  |  |
-|    VAN-Base     | 160K | 48.3   |  [config]()  |  |
-|    VAN-Large    | 160K |  50.1  |  [config]()  |  |
+|    VAN-Tiny     | 160K | 41.1 |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_tiny_512x512_160k_ade20k.py)  |  |
+|    VAN-Small    | 160K |  44.9  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_small_512x512_160k_ade20k.py)  |  |
+|    VAN-Base     | 160K | 48.3   |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_base_512x512_160k_ade20k.py)  |  |
+|    VAN-Large    | 160K |  50.1  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_large_512x512_160k_ade20k.py)  |  |
 
 
 **Notes**: In this scheme, we use multi-scale validation following Swin-Transformer.
@@ -20,10 +20,10 @@ More detailes can be found in
 #### VAN + Semantic FPN
 |    Backbone     | Iters | mIoU | Config | Download  |
 | :-------------: | :-----: | :------: | :------------: | :----: |
-|    VAN-Tiny     | 40K | 38.5 |  [config]()  |  |
-|    VAN-Small    | 40K |  42.9  |  [config]()  |  |
-|    VAN-Base     | 40K | 46.7   |  [config]()  |  |
-|    VAN-Large    | 40K |  48.1  |  [config]()  |  |
+|    VAN-Tiny     | 40K | 38.5 |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_tiny_ade20k_40k.py)  |  |
+|    VAN-Small    | 40K |  42.9  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_small_ade20k_40k.py)  |  |
+|    VAN-Base     | 40K | 46.7   |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_base_ade20k_40k.py)  |  |
+|    VAN-Large    | 40K |  48.1  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_large_ade20k_40k.py)  |  |
 
 
 ### Preparation
