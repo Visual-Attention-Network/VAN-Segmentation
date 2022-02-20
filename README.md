@@ -2,7 +2,7 @@
 This repo is a PyTorch implementation of applying **VAN** (**Visual Attention Network**) to semantic segmentation.
 The code is based on [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation/tree/v0.12.0).
 
-More detailes can be found in [**Visual Attention Network**]()
+More detailes can be found in [**Visual Attention Network**]().
 
 ### Results
 **Notes**: Pre-trained models can be found in [Visual Attention Network for Classification](https://github.com/Visual-Attention-Network/VAN-Classification).
