@@ -5,7 +5,7 @@ The code is based on [mmsegmentaion](https://github.com/open-mmlab/mmsegmentatio
 More detailes can be found in 
 
 ### Results
-**Notes**: Pre-trained models can be found in [Visual Attention Network for classification](https://github.com/Visual-Attention-Network/VAN-Classification)
+**Notes**: Pre-trained models can be found in [Visual Attention Network for Classification](https://github.com/Visual-Attention-Network/VAN-Classification).
 #### VAN + UperNet
 |    Backbone     | Iters | mIoU | Config | Download  |
 | :-------------: | :-----: | :------: | :------------: | :----: |
