@@ -1,4 +1,4 @@
-# Visual Attention Network (VAN) for Semantic Segmentaion
+# Visual Attention Network (VAN) for Segmentaion
 This repo is a PyTorch implementation of applying **VAN** (**Visual Attention Network**) to semantic segmentation.
 The code is based on [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation/tree/v0.12.0).
 
@@ -13,6 +13,8 @@ More detailes can be found in
 |    VAN-Small    | 160K |  44.9  |  [config]()  |  |
 |    VAN-Base     | 160K | 48.3   |  [config]()  |  |
 |    VAN-Large    | 160K |  50.1  |  [config]()  |  |
+
+
 **Notes**: In this scheme, we use multi-scale validation following Swin-Transformer.
 
 #### VAN + Semantic FPN
