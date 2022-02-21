@@ -3,7 +3,7 @@ _base_ = [
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
 ]
 model = dict(
-    pretrained='./seg_pretrained/checkpoint-296.pth.tar',
+    pretrained='/path/to/checkpoint',
     decode_head=dict(
         in_channels=[32, 64, 160, 256],
         num_classes=150
