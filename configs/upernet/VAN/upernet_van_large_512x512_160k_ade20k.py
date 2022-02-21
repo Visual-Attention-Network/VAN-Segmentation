@@ -3,7 +3,7 @@ _base_ = [
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
 ]
 model = dict(
-    pretrained='./seg_pretrained/checkpoint-306.pth.tar',
+    pretrained='/path/to/checkpoint',
     backbone=dict(
         type='van_large',
         style='pytorch'),
