@@ -33,8 +33,7 @@ Install MMSegmentation and download ADE20K according to the guidelines in MMSegm
 
 ```
 Pytorch >= 1.7
-MMSegmentation == v0.12.0 : https://github.com/open-mmlab/mmsegmentation/tree/v0.12.0
-
+MMSegmentation == v0.12.0 (https://github.com/open-mmlab/mmsegmentation/tree/v0.12.0)
 ```
 
 ### Training
