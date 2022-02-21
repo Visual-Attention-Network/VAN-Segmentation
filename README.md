@@ -29,6 +29,14 @@ More detailes can be found in [**Visual Attention Network**]().
 ### Preparation
 Install MMSegmentation and download ADE20K according to the guidelines in MMSegmentation.
 
+### Requirement
+
+```
+Pytorch >= 1.7
+MMSegmentation == v0.12.0 : https://github.com/open-mmlab/mmsegmentation/tree/v0.12.0
+
+```
+
 ### Training
 We use 8 GPUs for training by default. Run:
 ```bash
