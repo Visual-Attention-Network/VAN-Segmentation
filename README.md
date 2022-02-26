@@ -4,6 +4,16 @@ The code is based on [mmsegmentaion](https://github.com/open-mmlab/mmsegmentatio
 
 More detailes can be found in [**Visual Attention Network**](https://arxiv.org/abs/2202.09741).
 
+### Citation:
+```
+@article{guo2022visual,
+  title={Visual Attention Network},
+  author={Guo, Meng-Hao and Lu, Cheng-Ze and Liu, Zheng-Ning and Cheng, Ming-Ming and Hu, Shi-Min},
+  journal={arXiv preprint arXiv:2202.09741},
+  year={2022}
+}
+```
+
 ### Results
 **Notes**: Pre-trained models can be found in [Visual Attention Network for Classification](https://github.com/Visual-Attention-Network/VAN-Classification).
 #### VAN + UperNet
