@@ -30,10 +30,10 @@ More detailes can be found in [**Visual Attention Network**](https://arxiv.org/a
 #### VAN + Semantic FPN
 |    Backbone     | Iters | mIoU | Config | Download  |
 | :-------------: | :-----: | :------: | :------------: | :----: |
-|    VAN-Tiny     | 40K | 38.5 |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_tiny_ade20k_40k.py)  |  |
-|    VAN-Small    | 40K |  42.9  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_small_ade20k_40k.py)  |  |
-|    VAN-Base     | 40K | 46.7   |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_base_ade20k_40k.py)  |  |
-|    VAN-Large    | 40K |  48.1  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_large_ade20k_40k.py)  |  |
+|    VAN-Tiny     | 40K | 38.5 |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_tiny_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Jl8LtyvOl6xeNMKCjpK2Rp_tGRfua8LJ/view?usp=sharing) |
+|    VAN-Small    | 40K |  42.9  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_small_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Xfuo9D3Fo7b6zSCLTWE77k2jgYSHVSb8/view?usp=sharing) |
+|    VAN-Base     | 40K | 46.7   |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_base_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Ar4Hq9DjgaULQKfwM-jJvSO-D6gendpf/view?usp=sharing) |
+|    VAN-Large    | 40K |  48.1  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_large_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1v61uCi07IC6eyVHn3xbJqz4nOiGa1POY/view?usp=sharing) |
 
 
 ### Preparation
