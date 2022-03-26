@@ -6,9 +6,14 @@ from functools import partial
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 from timm.models.registry import register_model
 from timm.models.vision_transformer import _cfg
+
 from mmseg.models.builder import BACKBONES
 from mmseg.utils import get_root_logger
-from mmcv.runner import load_checkpoint
+
+
+from mmcv.runner import (BaseModule, CheckpointLoader, ModuleList,
+                         load_state_dict, load_checkpoint)
+from mmcv.runner import BaseModule
 
 import math
 
@@ -175,15 +180,22 @@ class OverlapPatchEmbed(nn.Module):
         return x, H, W
 
 
-class VAN(nn.Module):
+class VAN(BaseModule):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dims=[64, 128, 256, 512],
                  num_heads=[1, 2, 4, 8], mlp_ratios=[4, 4, 4, 4], qkv_bias=False, qk_scale=None, drop_rate=0.,
                  attn_drop_rate=0., drop_path_rate=0., norm_layer=nn.LayerNorm,
-                 depths=[3, 4, 6, 3], sr_ratios=[8, 4, 2, 1], num_stages=4, linear=False):
+                 depths=[3, 4, 6, 3], sr_ratios=[8, 4, 2, 1], strides=[4, 2, 2, 2], num_stages=4, linear=False,
+                 pretrained=None, init_cfg=None):
         super().__init__()
         self.depths = depths
         self.num_stages = num_stages
         self.linear = linear
+        
+        if isinstance(pretrained, str):
+            # self.init_cfg = dict(type='Pretrained', checkpoint=pretrained)
+            self.init_cfg = pretrained
+            # print(self.init_cfg)
+
 
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, sum(depths))]  # stochastic depth decay rule
         cur = 0
@@ -191,7 +203,8 @@ class VAN(nn.Module):
         for i in range(num_stages):
             patch_embed = OverlapPatchEmbed(img_size=img_size if i == 0 else img_size // (2 ** (i + 1)),
                                             patch_size=7 if i == 0 else 3,
-                                            stride=4 if i == 0 else 2,
+                                            # stride=4 if i == 0 else 2,
+                                            stride=strides[i],
                                             in_chans=in_chans if i == 0 else embed_dims[i - 1],
                                             embed_dim=embed_dims[i])
 
@@ -206,8 +219,8 @@ class VAN(nn.Module):
             setattr(self, f"patch_embed{i + 1}", patch_embed)
             setattr(self, f"block{i + 1}", block)
             setattr(self, f"norm{i + 1}", norm)
-
-        self.apply(self._init_weights)
+            
+        # self.init_weights()
 
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):
@@ -224,10 +237,13 @@ class VAN(nn.Module):
             if m.bias is not None:
                 m.bias.data.zero_()
 
-    def init_weights(self, pretrained=None):
-        if isinstance(pretrained, str):
+    def init_weights(self):
+        if isinstance(self.init_cfg, str):
             logger = get_root_logger()
-            load_checkpoint(self, pretrained, map_location='cpu', strict=False, logger=logger)
+            # load_state_dict(self, state_dict, strict=False, logger=logger)
+            load_checkpoint(self, self.init_cfg, map_location='cpu', strict=False, logger=logger)
+        else:
+            self.apply(self._init_weights)
 
     def freeze_patch_emb(self):
         self.patch_embed1.requires_grad = False
@@ -292,7 +308,7 @@ class van_tiny(VAN):
         super(van_tiny, self).__init__(
             patch_size=4, embed_dims=[32, 64, 160, 256], num_heads=[1, 2, 5, 8], mlp_ratios=[8, 8, 4, 4],
             qkv_bias=True, norm_layer=partial(nn.LayerNorm, eps=1e-6), depths=[3, 3, 5, 2], sr_ratios=[8, 4, 2, 1],
-            drop_rate=0.0, drop_path_rate=0.1)
+            drop_rate=0.0, drop_path_rate=0.1, **kwargs)
 
 
 @BACKBONES.register_module()
@@ -301,7 +317,7 @@ class van_small(VAN):
         super(van_small, self).__init__(
             patch_size=4, embed_dims=[64, 128, 320, 512], num_heads=[1, 2, 5, 8], mlp_ratios=[8, 8, 4, 4], qkv_bias=True,
             norm_layer=partial(nn.LayerNorm, eps=1e-6), depths=[2, 2, 4, 2], sr_ratios=[8, 4, 2, 1],
-            drop_rate=0.0, drop_path_rate=0.1)
+            drop_rate=0.0, drop_path_rate=0.1, **kwargs)
 
 
 @BACKBONES.register_module()
@@ -310,13 +326,22 @@ class van_base(VAN):
         super(van_base, self).__init__(
             patch_size=4, embed_dims=[64, 128, 320, 512], num_heads=[1, 2, 5, 8], mlp_ratios=[8, 8, 4, 4], qkv_bias=True,
             norm_layer=partial(nn.LayerNorm, eps=1e-6), depths=[3, 3, 12, 3], sr_ratios=[8, 4, 2, 1],
-            drop_rate=0.0, drop_path_rate=0.1)
+            drop_rate=0.0, drop_path_rate=0.1, **kwargs)
 
 @BACKBONES.register_module()
 class van_large(VAN):
-    def __init__(self, **kwargs):
+    def __init__(self, drop_path_rate=0.1, **kwargs):
         super(van_large, self).__init__(
             patch_size=4, embed_dims=[64, 128, 320, 512], num_heads=[1, 2, 5, 8], mlp_ratios=[8, 8, 4, 4], qkv_bias=True,
             norm_layer=partial(nn.LayerNorm, eps=1e-6), depths=[3, 5, 27, 3], sr_ratios=[8, 4, 2, 1],
-            drop_rate=0.0, drop_path_rate=0.1)
+            drop_rate=0.0, drop_path_rate=drop_path_rate, **kwargs)
+
+
+@BACKBONES.register_module()
+class van_huge(VAN):
+    def __init__(self, drop_path_rate=0.1, **kwargs):
+        super(van_huge, self).__init__(
+            patch_size=4, embed_dims=[64, 128, 320, 512], num_heads=[1, 2, 5, 8], mlp_ratios=[8, 8, 4, 4], qkv_bias=True,
+            norm_layer=partial(nn.LayerNorm, eps=1e-6), depths=[3, 6, 40, 3], sr_ratios=[8, 4, 2, 1],
+            drop_rate=0.0, drop_path_rate=drop_path_rate, **kwargs)
 

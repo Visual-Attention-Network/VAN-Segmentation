@@ -2,7 +2,7 @@ _base_ = './fpn_van_base_ade20k_40k.py'
 
 # model settings
 model = dict(
-    pretrained='/path/to/checkpoint',
+    pretrained='./seg_pretrained/checkpoint-296.pth.tar',
     backbone=dict(
         type='van_tiny',
         style='pytorch'),

@@ -6,7 +6,7 @@ _base_ = [
 # model settings
 model = dict(
     type='EncoderDecoder',
-    pretrained='/path/to/checkpoint',
+    pretrained='./seg_pretrained/checkpoint-287.pth.tar',
     backbone=dict(
         type='van_base',
         style='pytorch'),
