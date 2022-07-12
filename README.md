@@ -14,46 +14,35 @@ More details can be found in [**Visual Attention Network**](https://arxiv.org/ab
   journal={arXiv preprint arXiv:2202.09741},
   year={2022}
 }
-
-@inproceedings{
-    ham,
-    title={Is Attention Better Than Matrix Decomposition?},
-    author={Zhengyang Geng and Meng-Hao Guo and Hongxu Chen and Xia Li and Ke Wei and Zhouchen Lin},
-    booktitle={International Conference on Learning Representations},
-    year={2021},
-}
 ```
 
 ## Results
 
-**Notes**: Pre-trained models can be found in [Visual Attention Network for Classification](https://github.com/Visual-Attention-Network/VAN-Classification).
+**Notes**: Pre-trained models can be found in [Pre-trained model](https://github.com/Visual-Attention-Network/VAN-Classification).
 
-### VAN + HamNet / UperNet
+### VAN + UperNet
 
-|   Method  |    Backbone     | Iters | mIoU | Params | FLOPs  | Config | Download  |
-| :-------: | :-------------: | :---: | :--: | :----: | :----: | :----: | :-------: |
-|  Light-Ham-D256  |    VAN-Tiny     | 160K | [40.9](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/work_dirs/hamnet_light_van_tiny_d256_512x512_160k_ade20k/eval_multi_scale_20220321_052101.json) | 4.2M | 6.5G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/ham/hamnet_light_van_tiny_d256_512x512_160k_ade20k.py)  | [Google Drive](https://drive.google.com/file/d/11XjGgqgqWJOUKdIEWuInQJyi4wAChaWN/view?usp=sharing) |
-|  -  | - | - | - | -  | - | - | - |
-|  HamNet  |    VAN-Tiny-OS8     | 160K | 41.5 | 11.9M | 50.8G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_tiny_512x512_160k_ade20k.py)  | [Google Drive](https://drive.google.com/file/d/1T1BxnBr4rErKaKiUwp_xF-Ik7j7jINJR/view?usp=sharing) |
-|  HamNet  |    VAN-Small-OS8    | 160K | 45.1 | 24.2M | 100.6G |   [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_small_512x512_160k_ade20k.py)  | [Google Drive](https://drive.google.com/file/d/1kfZIMZINOprSL6G113sm_KjPlE10nbWz/view?usp=sharing) |
-|  HamNet  |    VAN-Base-OS8     | 160K | 48.7 | 36.9M | 153.6G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_base_512x512_160k_ade20k.py)  | [Google Drive](https://drive.google.com/file/d/1jH1jx6KPckEL0-Ozje0koT8uFw0Bjyfi/view?usp=sharing) |
-|  HamNet  |    VAN-Large-OS8    | 160K | 50.2 | 55.1M | 227.7G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_large_512x512_160k_ade20k.py)  | [Google Drive](https://drive.google.com/file/d/1tPEQ9W1Pn_Bmkn3eGOtjM8dMZ0mTK4ka/view?usp=sharing) |
-|  -  | - | - | - | -  | - | - | - |
-|  UperNet  |    VAN-Tiny  | 160K | 41.1 | 32.1M | 214.7 | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_tiny_512x512_160k_ade20k.py)  |  |
-|  UperNet  |    VAN-Small    | 160K |  44.9  | 43.8M | 224.0G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_small_512x512_160k_ade20k.py)  |  |
-|  UperNet  |    VAN-Base     | 160K | 48.3 | 56.6M | 237.1G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_base_512x512_160k_ade20k.py)  |  |
-|  UperNet  |    VAN-Large    | 160K |  50.1 | 74.7M | 257.7G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/VAN/upernet_van_large_512x512_160k_ade20k.py)  |  |
+|   Method  |    Backbone     |  Pretrained | Iters | mIoU(ms) | Params | FLOPs  | Config | Download  |
+| :-------: | :-------------: | :-----: | :---: | :--: | :----: | :----: | :----: | :-------: |
+|  UperNet  |    VAN-B0  | 1K | 160K | 41.1 | 32.1M | - | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/1k_pretrained/upernet_van_b0_512x512_160k_ade20k.py)  | - |
+|  UperNet  |    VAN-B1  | 1K  | 160K |  44.9  | 43.8M | - | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/1k_pretrained/upernet_van_b1_512x512_160k_ade20k.py)  | - |
+|  UperNet  |    VAN-B2  | 1K  | 160K |  50.1 | 56.6M | 948G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/1k_pretrained/upernet_van_b2_512x512_160k_ade20k.py)  | - |
+|  UperNet  |    VAN-B3  | 1K  | 160K |  50.6 | 74.7M | 1030G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/1k_pretrained/upernet_van_b3_512x512_160k_ade20k.py)  | - |
+|  UperNet  |    VAN-B4  | 1K  | 160K |  52.2 |  90M | 1098G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/1k_pretrained/upernet_van_b4_512x512_160k_ade20k.py)  | - |
+|  UperNet  |    VAN-B4  | 22K | 160K |  53.5 | 90M  | 1098G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/22k_pretrained/upernet_van_b4_512x512_160k_ade20k_22k.py)  | - |
+|  UperNet  |    VAN-B5  | 22K | 160K |  53.9 |  117M | 1208G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/22k_pretrained/upernet_van_b5_512x512_160k_ade20k_22k.py)  | - |
+|  UperNet  |    VAN-B6  | 22K | 160K |  54.7 | 231M | 1658G | [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/upernet/22k_pretrained/upernet_van_b6_512x512_160k_ade20k_22k.py)  | - |
 
-**Notes**: In this scheme, we use multi-scale validation following Swin-Transformer. FLOPs are tested under the input size of 512 $\times$ 512 using [torchprofile](https://github.com/zhijian-liu/torchprofile) (recommended, highly accurate and automatic MACs/FLOPs statistics).
+**Notes**: In this scheme, we use multi-scale validation following Swin-Transformer. FLOPs are tested under the input size of 2048 $\times$ 512 using [torchprofile](https://github.com/zhijian-liu/torchprofile) (recommended, highly accurate and automatic MACs/FLOPs statistics).
 
 ### VAN + Semantic FPN
 
 |    Backbone     | Iters | mIoU | Config | Download  |
 | :-------------: | :-----: | :------: | :------------: | :----: |
-|    VAN-Tiny     | 40K | 38.5 |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_tiny_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Jl8LtyvOl6xeNMKCjpK2Rp_tGRfua8LJ/view?usp=sharing) |
-|    VAN-Small    | 40K |  42.9  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_small_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Xfuo9D3Fo7b6zSCLTWE77k2jgYSHVSb8/view?usp=sharing) |
-|    VAN-Base     | 40K | 46.7   |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_base_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Ar4Hq9DjgaULQKfwM-jJvSO-D6gendpf/view?usp=sharing) |
-|    VAN-Large    | 40K |  48.1  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/VAN/fpn_van_large_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1v61uCi07IC6eyVHn3xbJqz4nOiGa1POY/view?usp=sharing) |
+|    VAN-Tiny     | 40K | 38.5 |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/fpn_van_b0_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Jl8LtyvOl6xeNMKCjpK2Rp_tGRfua8LJ/view?usp=sharing) |
+|    VAN-Small    | 40K |  42.9  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/fpn_van_b1_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Xfuo9D3Fo7b6zSCLTWE77k2jgYSHVSb8/view?usp=sharing) |
+|    VAN-Base     | 40K | 46.7   |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/fpn_van_b2_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1Ar4Hq9DjgaULQKfwM-jJvSO-D6gendpf/view?usp=sharing) |
+|    VAN-Large    | 40K |  48.1  |  [config](https://github.com/Visual-Attention-Network/VAN-Segmentation/blob/main/configs/sem_fpn/fpn_van_b3_ade20k_40k.py)  | [Google Drive](https://drive.google.com/file/d/1v61uCi07IC6eyVHn3xbJqz4nOiGa1POY/view?usp=sharing) |
 
 ## Preparation
 
@@ -62,8 +51,7 @@ Install MMSegmentation and download ADE20K according to the guidelines in MMSegm
 ## Requirement
 
 ```
-Pytorch >= 1.7
-MMSegmentation == v0.12.0 (https://github.com/open-mmlab/mmsegmentation/tree/v0.12.0)
+pip install mmsegmentation==0.26.0 (https://github.com/open-mmlab/mmsegmentation/tree/v0.26.0)
 ```
 
 ## Training
@@ -71,7 +59,7 @@ MMSegmentation == v0.12.0 (https://github.com/open-mmlab/mmsegmentation/tree/v0.
 We use 8 GPUs for training by default. Run:
 
 ```bash
-dist_train.sh /path/to/config 8
+./dist_train.sh /path/to/config 8
 ```
 
 ## Evaluation
@@ -79,7 +67,7 @@ dist_train.sh /path/to/config 8
 To evaluate the model, run:
 
 ```bash
-dist_test.sh /path/to/config /path/to/checkpoint_file 8 --out results.pkl --eval mIoU
+./dist_test.sh /path/to/config /path/to/checkpoint_file 8 --eval mIoU
 ```
 
 ## FLOPs

@@ -54,7 +54,7 @@ def main():
     split_line = '=' * 30
     print('{0}\nInput shape: {1}\nFlops: {2}\nParams: {3}\n{0}'.format(
         split_line, input_shape, flops, params))
-    
+
     inputs = torch.randn(1, *input_shape).cuda()
     macs = profile_macs(model, inputs) / 1e9
     print(f'GFLOPs {macs}.')

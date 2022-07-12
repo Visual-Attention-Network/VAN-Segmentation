@@ -9,7 +9,6 @@ import warnings
 import mmcv
 import torch
 from mmcv.cnn.utils import revert_sync_batchnorm
-from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
 from mmcv.runner import (get_dist_info, init_dist, load_checkpoint,
                          wrap_fp16_model)
 from mmcv.utils import DictAction
@@ -18,8 +17,7 @@ from mmseg import digit_version
 from mmseg.apis import multi_gpu_test, single_gpu_test
 from mmseg.datasets import build_dataloader, build_dataset
 from mmseg.models import build_segmentor
-from mmseg.utils import setup_multi_processes
-
+from mmseg.utils import build_ddp, build_dp, get_device, setup_multi_processes
 import van
 
 
@@ -193,12 +191,28 @@ def main():
     # build the dataloader
     # TODO: support multiple images per gpu (only minor changes are needed)
     dataset = build_dataset(cfg.data.test)
-    data_loader = build_dataloader(
-        dataset,
-        samples_per_gpu=1,
-        workers_per_gpu=cfg.data.workers_per_gpu,
+    # The default loader config
+    loader_cfg = dict(
+        # cfg.gpus will be ignored if distributed
+        num_gpus=len(cfg.gpu_ids),
         dist=distributed,
         shuffle=False)
+    # The overall dataloader settings
+    loader_cfg.update({
+        k: v
+        for k, v in cfg.data.items() if k not in [
+            'train', 'val', 'test', 'train_dataloader', 'val_dataloader',
+            'test_dataloader'
+        ]
+    })
+    test_loader_cfg = {
+        **loader_cfg,
+        'samples_per_gpu': 1,
+        'shuffle': False,  # Not shuffle by default
+        **cfg.data.get('test_dataloader', {})
+    }
+    # build the dataloader
+    data_loader = build_dataloader(dataset, **test_loader_cfg)
 
     # build the model and load checkpoint
     cfg.model.train_cfg = None
@@ -246,6 +260,7 @@ def main():
     else:
         tmpdir = None
 
+    cfg.device = get_device()
     if not distributed:
         warnings.warn(
             'SyncBN is only supported with DDP. To be compatible with DP, '
@@ -255,7 +270,7 @@ def main():
             assert digit_version(mmcv.__version__) >= digit_version('1.4.4'), \
                 'Please use MMCV >= 1.4.4 for CPU training!'
         model = revert_sync_batchnorm(model)
-        model = MMDataParallel(model, device_ids=cfg.gpu_ids)
+        model = build_dp(model, cfg.device, device_ids=cfg.gpu_ids)
         results = single_gpu_test(
             model,
             data_loader,
@@ -267,9 +282,10 @@ def main():
             format_only=args.format_only or eval_on_format_results,
             format_args=eval_kwargs)
     else:
-        model = MMDistributedDataParallel(
-            model.cuda(),
-            device_ids=[torch.cuda.current_device()],
+        model = build_ddp(
+            model,
+            cfg.device,
+            device_ids=[int(os.environ['LOCAL_RANK'])],
             broadcast_buffers=False)
         results = multi_gpu_test(
             model,
