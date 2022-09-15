@@ -81,7 +81,7 @@ pip install torchprofile
 To calculate FLOPs for a model, run:
 
 ```bash
-bash tools/flops.sh /path/to/checkpoint_file --shape 512 512
+bash tools/flops.sh /path/to/config --shape 512 512
 ```
 
 
